@@ -9,7 +9,6 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,8 +17,9 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
     private ArrayList<City> dataList;
     private ListView cityList;
     private CityArrayAdapter cityAdapter;
-
     private String clicked_Item;
+
+
 
     public void addCity(City city){
         cityAdapter.add(city);
@@ -59,7 +59,10 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object clickedItem = parent.getItemAtPosition(position);
-                clicked_Item = clickedItem.toString();
+                //clicked_Item = clickedItem.toString();
+                //Bundle bundle = new Bundle();
+                //bundle.putString("Stringkey", clicked_Item);
+                new editCity().show(getSupportFragmentManager(), "Edit City");
             }
         });
 

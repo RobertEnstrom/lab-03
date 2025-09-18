@@ -2,6 +2,7 @@ package com.example.listycitylab3;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +13,25 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 public class editCity extends DialogFragment {
-
     interface AddCityDialogListener {
         void addCity(City city);
     }
 
     private AddCityFragment.AddCityDialogListener listener;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof AddCityFragment.AddCityDialogListener){
+            listener = (AddCityFragment.AddCityDialogListener) context;
+        }
+        else{
+            throw new RuntimeException(context + "must implement AddCityDialogListener");
+        }
+    }
+
+
 
     @NonNull
     @Override
