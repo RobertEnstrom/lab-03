@@ -2,6 +2,7 @@ package com.example.listycitylab3;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
     private ArrayList<City> dataList;
     private ListView cityList;
     private CityArrayAdapter cityAdapter;
+
+    private String clicked_Item;
 
     public void addCity(City city){
         cityAdapter.add(city);
@@ -51,5 +54,14 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
                 new AddCityFragment().show(getSupportFragmentManager(), "Add City");
             }
         });
+
+        cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object clickedItem = parent.getItemAtPosition(position);
+                clicked_Item = clickedItem.toString();
+            }
+        });
+
     }
 }
