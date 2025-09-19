@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
     private ArrayList<City> dataList;
     private ListView cityList;
     private CityArrayAdapter cityAdapter;
-    private String clicked_Item;
+    private Object clickedItem;
 
 
 
@@ -58,13 +58,18 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
         cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object clickedItem = parent.getItemAtPosition(position);
-                //clicked_Item = clickedItem.toString();
-                //Bundle bundle = new Bundle();
-                //bundle.putString("Stringkey", clicked_Item);
+                //clickedItem = parent.getItemAtPosition(position);
                 new editCity().show(getSupportFragmentManager(), "Edit City");
+
+                // get city here
+                //pass in the city object within the city object we can get the city and province name then we can set them onto the edit fragment.
+                //Then we can have the user update them and then finally, once they click add, it will update the value
             }
         });
 
+    }
+
+    public Object getClickedItem() {
+        return clickedItem;
     }
 }

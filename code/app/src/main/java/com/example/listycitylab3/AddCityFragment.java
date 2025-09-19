@@ -28,7 +28,7 @@ public class AddCityFragment extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        if (context instanceof  AddCityDialogListener){
+        if (context instanceof AddCityDialogListener){
             listener = (AddCityDialogListener) context;
         }
         else{

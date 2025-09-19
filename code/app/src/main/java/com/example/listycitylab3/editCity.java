@@ -17,6 +17,10 @@ public class editCity extends DialogFragment {
         void addCity(City city);
     }
 
+    private MainActivity main = new MainActivity();
+
+    private City cityfile = new City("City", "Province");
+
     private AddCityFragment.AddCityDialogListener listener;
 
     @Override
@@ -33,6 +37,7 @@ public class editCity extends DialogFragment {
 
 
 
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -46,9 +51,11 @@ public class editCity extends DialogFragment {
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Add", (dialog, which) -> {
                     // Code that happens when we run the pop up.
+
                     String cityName = editCityName.getText().toString();
                     String provinceName = editProvinceName.getText().toString();
                     listener.addCity(new City(cityName, provinceName));
+
                 })
                 .create();
     }
