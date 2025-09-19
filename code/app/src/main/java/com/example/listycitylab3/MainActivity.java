@@ -1,6 +1,8 @@
 package com.example.listycitylab3;
 
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity implements AddCityFragment.AddCityDialogListener {
+public class MainActivity extends AppCompatActivity implements AddCityFragment.AddCityDialogListener, editCity.EditCityDialogListener {
 
     private ArrayList<City> dataList;
     private ListView cityList;
@@ -23,6 +25,22 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
 
     public void addCity(City city){
         cityAdapter.add(city);
+        cityAdapter.notifyDataSetChanged();
+    }
+
+    public void  editCity(City city, City oldcity){
+        //int position = cityAdapter.getPosition(city);
+        int position = 1;
+        for (int i = 0; i < cityAdapter.getCount(); i++){
+            Log.d("debug", cityAdapter.getItem(i).getName());
+            Log.d("debug2", city.getName());
+            if (cityAdapter.getItem(i).getName() == oldcity.getName()){
+                position = i;
+            }
+
+        }
+        cityAdapter.remove(cityAdapter.getItem(position));
+        cityAdapter.insert(city, position);
         cityAdapter.notifyDataSetChanged();
     }
 
@@ -58,8 +76,9 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
         cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //clickedItem = parent.getItemAtPosition(position);
-                new editCity().show(getSupportFragmentManager(), "Edit City");
+                City clickedItem = (City) parent.getItemAtPosition(position);
+                editCity frag = editCity.newInstance(clickedItem);
+                frag.show(getSupportFragmentManager(), "Edit City");
 
                 // get city here
                 //pass in the city object within the city object we can get the city and province name then we can set them onto the edit fragment.
