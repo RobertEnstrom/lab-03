@@ -9,4 +9,4 @@ List any resources used here, or simply put `N/A` if not applicable.
 | Student Name | CCID      |
 | ------------ | --------- |
 | `Tejwinder Johal`    | `tejwinde` |
-| `<Add more>` | `<CCID>`  |
+| `Cooper Goddard` | `cgoddard`  |
