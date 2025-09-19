@@ -14,7 +14,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity implements AddCityFragment.AddCityDialogListener, editCity.EditCityDialogListener {
+public class MainActivity extends AppCompatActivity implements
+        AddCityFragment.AddCityDialogListener,
+        editCity.EditCityDialogListener {
 
     private ArrayList<City> dataList;
     private ListView cityList;
@@ -29,11 +31,8 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
     }
 
     public void  editCity(City city, City oldcity){
-        //int position = cityAdapter.getPosition(city);
-        int position = 1;
+        int position = 0;
         for (int i = 0; i < cityAdapter.getCount(); i++){
-            Log.d("debug", cityAdapter.getItem(i).getName());
-            Log.d("debug2", city.getName());
             if (cityAdapter.getItem(i).getName() == oldcity.getName()){
                 position = i;
             }
@@ -79,16 +78,8 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
                 City clickedItem = (City) parent.getItemAtPosition(position);
                 editCity frag = editCity.newInstance(clickedItem);
                 frag.show(getSupportFragmentManager(), "Edit City");
-
-                // get city here
-                //pass in the city object within the city object we can get the city and province name then we can set them onto the edit fragment.
-                //Then we can have the user update them and then finally, once they click add, it will update the value
             }
         });
 
-    }
-
-    public Object getClickedItem() {
-        return clickedItem;
     }
 }
